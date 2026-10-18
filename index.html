@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anna Senouci Ops | Back-office systems for tutoring businesses</title>
+<meta name="description" content="Intake, scheduling, payment, and parent-communication systems for tutoring businesses. Get a free process map.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F7F9F8;--surface:#FFFFFF;--ink:#16221E;--muted:#55645E;--line:#D9E2DE;
+  --board:#17332B;--chalk:#F1F5F2;--chalk-dim:#B9CBC3;--accent:#F2C94C;
+  --btn:#17332B;--btn-ink:#FFFFFF;
+  --head:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Public Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1714;--surface:#16211D;--ink:#EAF0ED;--muted:#9DB0A8;--line:#26352F;
+    --btn:#F2C94C;--btn-ink:#16221E;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1714;--surface:#16211D;--ink:#EAF0ED;--muted:#9DB0A8;--line:#26352F;
+  --btn:#F2C94C;--btn-ink:#16221E;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--btn);color:var(--btn-ink);font-weight:600;text-decoration:none;padding:14px 24px;border-radius:8px}
+.btn:hover{filter:brightness(1.08)}
+
+/* hero */
+.hero{background:var(--board);color:var(--chalk)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-family:var(--head);font-weight:700}
+.nav a{font-family:var(--body);font-weight:500;font-size:15px;color:var(--chalk-dim);text-decoration:none}
+.nav a:hover{color:var(--chalk)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:40px 0 80px}
+.hero h1{font-size:clamp(40px,6vw,68px);font-weight:700}
+.hero p{color:var(--chalk-dim);font-size:19px;max-width:34em;margin:20px 0 32px}
+.hero .btn{background:var(--accent);color:#16221E}
+.map{list-style:none;margin:0;padding:0;position:relative}
+.map::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;border-left:2px dashed rgba(241,245,242,.35)}
+.map li{position:relative;padding:0 0 22px 44px}
+.map li:last-child{padding-bottom:0}
+.map li::before{content:"";position:absolute;left:3px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--board);border:2px solid var(--accent)}
+.map b{display:block;font-family:var(--head);font-size:20px;color:var(--chalk)}
+.map span{color:var(--chalk-dim);font-size:15px}
+
+/* sections */
+section{padding:72px 0}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
+.lede{color:var(--muted);max-width:36em;margin:0 0 36px}
+.pain{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 40px}
+.pain li{padding:14px 0 14px 28px;border-top:1px solid var(--line);position:relative}
+.pain li::before{content:"\2715";position:absolute;left:0;top:14px;color:var(--muted);font-size:14px}
+
+/* packages */
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;align-items:stretch}
+.pkg{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px;display:flex;flex-direction:column}
+.pkg.main{border:2px solid var(--board);box-shadow:0 0 0 4px rgba(242,201,76,.35)}
+.pkg h3{font-size:22px}
+.price{font-family:var(--head);font-size:44px;font-weight:700;margin:10px 0 4px}
+.price small{font-size:16px;font-weight:500;color:var(--muted)}
+.pkg p{color:var(--muted);margin:0 0 16px;font-size:16px}
+.pkg ul{margin:0;padding-left:20px;font-size:16px}
+.pkg li{margin:4px 0}
+.fine{color:var(--muted);font-size:15px;margin-top:20px}
+
+/* sample map */
+.sample{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sample-head{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.sample-head b{font-family:var(--head);font-size:20px}
+.sample-head span{color:var(--muted);font-size:14px}
+.row{display:grid;grid-template-columns:1.1fr 2.2fr .9fr 1.2fr;gap:16px;padding:14px 24px;border-top:1px solid var(--line);font-size:15px}
+.row:first-of-type{border-top:0}
+.row.h{color:var(--muted);font-weight:600;font-size:14px;background:var(--bg)}
+.row b{font-weight:600}
+@media (max-width:780px){.row{grid-template-columns:1fr;gap:2px}.row.h{display:none}}
+
+/* faq */
+.faq{max-width:44em}
+.faq details{border-top:1px solid var(--line);padding:16px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-family:var(--head);font-size:20px;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--muted);font-weight:400}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:10px 0 0;color:var(--muted);font-size:16px}
+
+/* why + cta */
+.why{max-width:42em}
+.cta{background:var(--board);color:var(--chalk);border-radius:16px;padding:56px 32px;text-align:center}
+.cta h2{margin-bottom:12px}
+.cta p{color:var(--chalk-dim);max-width:34em;margin:0 auto 28px}
+.cta .btn{background:var(--accent);color:#16221E}
+footer{padding:32px 0 48px;color:var(--muted);font-size:14px}
+
+@media (max-width:780px){
+  .hero-grid{grid-template-columns:1fr;gap:36px;padding-bottom:56px}
+  section{padding:52px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <span>Anna Senouci Ops</span>
+      <a href="#map">Free process map</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <h1>You teach. I’ll run the back office.</h1>
+        <p>I build the intake, scheduling, payment, and parent-communication systems that tutoring businesses never have time to set up, so your evenings go back to you.</p>
+        <a class="btn" href="#map">Get a free process map</a>
+      </div>
+      <ol class="map" aria-label="How a new student moves through your business">
+        <li><b>Parent inquiry</b><span>Auto-reply with next steps</span></li>
+        <li><b>Intake form</b><span>Goals, level, availability</span></li>
+        <li><b>Scheduling</b><span>Booked, confirmed, reminded</span></li>
+        <li><b>Welcome pack</b><span>Policies and payment terms</span></li>
+        <li><b>First session</b><span>Notes and progress logged</span></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Sound familiar?</h2>
+      <p class="lede">Most tutors are excellent teachers running a business held together by text messages.</p>
+      <ul class="pain">
+        <li>Chasing parents for forms and payments</li>
+        <li>Rescheduling by hand, again</li>
+        <li>Answering the same questions every week</li>
+        <li>No written policy for no-shows or refunds</li>
+        <li>New tutors learning the ropes from scratch</li>
+        <li>No simple way to show parents progress</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Packages</h2>
+      <p class="lede">Fixed prices, delivered in about a week, with one round of revisions.</p>
+      <div class="pkgs">
+        <article class="pkg">
+          <h3>Starter Pack</h3>
+          <div class="price">$450</div>
+          <p>Six documented core processes your business can follow every day.</p>
+          <ul>
+            <li>Intake, scheduling, cancellations</li>
+            <li>Payments, parent updates, tutor onboarding</li>
+            <li>Ready-to-use templates</li>
+          </ul>
+        </article>
+        <article class="pkg main">
+          <h3>Full Onboarding System</h3>
+          <div class="price">$900</div>
+          <p>Everything in the Starter Pack, built and connected.</p>
+          <ul>
+            <li>Parent and student welcome flow</li>
+            <li>Intake forms and automated reminders</li>
+            <li>Short training video for your team</li>
+          </ul>
+        </article>
+        <article class="pkg">
+          <h3>Monthly Support</h3>
+          <div class="price">$300 <small>/ month</small></div>
+          <p>Your systems stay current as you grow.</p>
+          <ul>
+            <li>Updates and fixes</li>
+            <li>New processes as needed</li>
+            <li>Quick-turnaround questions</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap why">
+      <h2>Why me</h2>
+      <p>My background is in operations, administration, and education. I know how a business runs behind the scenes, and I know what a classroom and a family need from it.</p>
+      <p>Everything I deliver is written plainly, so you and any tutor you hire can use it on day one.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>What a process map looks like</h2>
+      <p class="lede">Here is an example of the one-page workflow you’ll get. Yours is built around how your business actually runs.</p>
+      <div class="sample" role="table" aria-label="Sample process map">
+        <div class="sample-head"><b>New student: first message to first session</b><span>Example only</span></div>
+        <div class="row h" role="row"><span>Step</span><span>What happens</span><span>Who</span><span>When</span></div>
+        <div class="row" role="row"><b>Inquiry received</b><span>Auto-reply sends the intake link and a short intro to your tutoring</span><span>System</span><span>Within minutes</span></div>
+        <div class="row" role="row"><b>Intake form</b><span>Parent shares the student’s goals, level, and availability</span><span>Parent</span><span>Same day</span></div>
+        <div class="row" role="row"><b>Scheduling</b><span>Session is booked, then confirmed and reminded automatically</span><span>System</span><span>Reminder the day before</span></div>
+        <div class="row" role="row"><b>Welcome pack</b><span>Policies for cancellations and no-shows, plus payment terms</span><span>You</span><span>Before session one</span></div>
+        <div class="row" role="row"><b>First session</b><span>Notes and progress are logged in one shared place</span><span>Tutor</span><span>After the session</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap faq">
+      <h2>Questions</h2>
+      <details>
+        <summary>How does the free process map work?</summary>
+        <p>You email me how a new student currently gets from first message to first session. I send back a one-page workflow showing the steps and where they could be simplified. There’s no obligation to buy anything.</p>
+      </details>
+      <details>
+        <summary>What tools will I need?</summary>
+        <p>I build with free or low-cost tools you may already use, such as your email, a calendar, and online forms. If anything has a cost, I’ll tell you before I build it.</p>
+      </details>
+      <details>
+        <summary>What does one round of revisions include?</summary>
+        <p>After I deliver your systems, you can send me one set of changes to anything I built, and I’ll update it.</p>
+      </details>
+      <details>
+        <summary>I’m a solo tutor. Is this for me?</summary>
+        <p>Yes. Clear systems save a solo tutor time now, and they make it much easier to bring on other tutors later.</p>
+      </details>
+      <details>
+        <summary>What if I need changes later?</summary>
+        <p>Monthly Support covers updates, fixes, and new processes as your business grows.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="map" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Start with a free process map</h2>
+        <p>Tell me how a new student currently gets from first message to first session. I’ll send back a one-page workflow you can use right away, with no obligation.</p>
+        <a class="btn" href="mailto:annasenoucioops@gmail.com?subject=Free%20process%20map">Email me for your free process map</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© Anna Senouci. Operations systems for tutoring businesses. · <a href="mailto:annasenoucioops@gmail.com">annasenoucioops@gmail.com</a></div>
+</footer>
+
+</body>
+</html>
